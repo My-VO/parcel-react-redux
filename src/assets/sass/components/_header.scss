@@ -1,0 +1,17 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--orange);
+  padding: var(--padding-global);
+  h1,
+  a {
+    color: var(--white);
+  }
+  nav {
+    a {
+      padding-left: 20px;
+      font-size: x-large;
+    }
+  }
+}

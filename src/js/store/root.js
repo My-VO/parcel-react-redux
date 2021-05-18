@@ -6,7 +6,7 @@ const initialState = {
     loading: false
 }
 
-const initialStateReducer = (state=initialState, action) => {
+const initialStateReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'APP_INIT':
             return {
