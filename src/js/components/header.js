@@ -4,11 +4,15 @@ import { useSelector } from 'react-redux';
 
 function Header() {
     const title = useSelector(state => state.app.name)
+    const userEmail = useSelector(state => state.auth?.values?.email)
 
     return (
         <header>
             <div>
                 <h1>{title}</h1>
+            </div>
+            <div>
+                <span>{userEmail}</span>
             </div>
             <nav>
                 <span>

@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import api from '../../shared/utils/api-url'
+import React, { useState } from 'react';
+import { useDispatch }  from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+import api from '../../shared/utils/api-url';
 
 function LoginForm() {
     const [values, setValues] = useState({
@@ -18,16 +21,26 @@ function LoginForm() {
         })
     }
 
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const handleSubmit = async (e) => {
         setErrors(null)
         e.preventDefault();     
 
         try {
-            const result = await api.post('/users/authenticate', values)
-            console.log('result : ', result)
-            console.log('result.message : ', result.message)
+            const result = await api.post('/users/authenticate', values);
+            console.log('result : ', result);
+            dispatch({
+                type: "USER_SET",
+                payload: result.data
+            });
+            history.push('/')
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(error.response?.data?.message)
+            dispatch({
+                type: "USER_RESET"
+            })
         }
     }
 
@@ -35,29 +48,32 @@ function LoginForm() {
         <div>
             {errors && (<p style={{ color: 'red'}}>{errors}</p>)}
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email">
-                    Email Address
+                <div>
+                    <label htmlFor="email">
+                        Email Address
+                    </label>
                     <input
-                    type="email"
-                    value={values.email}
-                    onChange={handleInputChange}
-                    name="email"
-                    id="email"
-                    required
+                        id="email"
+                        type="email"
+                        value={values.email}
+                        onChange={handleInputChange}
+                        name="email"
+                        required
                     />
-                </label>
-
-                <label htmlFor="password">
-                    Password
+                </div>
+                <div>
+                    <label htmlFor="password">
+                        Password
+                    </label>
                     <input
-                    type="password"
-                    value={values.password}
-                    onChange={handleInputChange}
-                    name="password"
-                    id="password"
-                    required
+                        id="password"
+                        type="password"
+                        value={values.password}
+                        onChange={handleInputChange}
+                        name="password"
+                        required
                     />
-                </label>
+                </div>
 
                 <button type="submit">ME CONNECTER</button>
             </form>

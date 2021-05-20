@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { AuthRoute } from './components/authRoute';
 import Layout from './components/layout';
 import Login from './pages/login/login';
 import Home from './pages/home';
@@ -18,26 +19,23 @@ const App = () => {
     const appState = useSelector(state => state.app)
 
     useEffect(async() => {
-        dispatch({type: "APP_INIT"})
+        dispatch({type: "APP_INIT"});
+        dispatch({type: "USER_FETCH"})
 
         try {
             const result = await api.get('/users/me');
 
-            // console.log(`result`, result)
-            dispatch({type: "APP_READY"})
-
-            // if (result.status === 200) {
-            //     dispatch({type: "APP_READY"})
-            // } 
-
-            // throw result;
+            console.log(`result app`, result)
+            dispatch({type: "USER_SET", payload: result.data})
         } catch(err) {
            // console.error('err : ', err);
-            dispatch({type: "APP_READY"})
+            dispatch({type: "USER_RESET"})
         }
+
+        dispatch({type: "APP_READY"})
     }, [])
 
-    if (appState.loading) return <div>Loading...</div>
+    if (!appState.init) return <div>Loading...</div>
 
     return (
         <Router>
@@ -45,8 +43,8 @@ const App = () => {
                 <Route exact path="/register" exact component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Layout>
-                    <Route exact path="/" exact component={Home} />
-                    <Route exact path="/books" component={Books} />
+                    <AuthRoute exact path="/" exact component={Home} />
+                    <AuthRoute exact path="/books" component={Books} />
                 </Layout>
             </Switch>
         </Router>

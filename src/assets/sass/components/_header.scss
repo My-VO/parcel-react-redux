@@ -5,12 +5,18 @@ header {
   background-color: var(--orange);
   padding: var(--padding-global);
   h1,
-  a {
+  a,
+  span {
     color: var(--white);
   }
   nav {
     a {
       padding-left: 20px;
+      font-size: x-large;
+    }
+  }
+  div {
+    span {
       font-size: x-large;
     }
   }
