@@ -36,6 +36,8 @@
     "last 3 safari versions"
   ],
   "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^9.0.2",
     "formik": "^2.2.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

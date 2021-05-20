@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import ValidationSchema from '../../shared/validation-schema'
+import ValidationSchema from '../../shared/utils/validation-schema'
 
 function RegisterForm() {
     const formik = useFormik({

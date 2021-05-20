@@ -9,18 +9,32 @@ import Home from './pages/home';
 import Books from './pages/books';
 import Register from './pages/register/register';
 
-import '../assets/sass/App.scss'
+import '../assets/sass/App.scss';
+
+import api from './shared/utils/api-url';
 
 const App = () => {
     const dispatch = useDispatch();
     const appState = useSelector(state => state.app)
 
-    useEffect(() => {
+    useEffect(async() => {
         dispatch({type: "APP_INIT"})
 
-        setTimeout(() => {
+        try {
+            const result = await api.get('/users/me');
+
+            console.log(`result`, result)
             dispatch({type: "APP_READY"})
-        }, 2000)
+
+            // if (result.status === 200) {
+            //     dispatch({type: "APP_READY"})
+            // } 
+
+            // throw result;
+        } catch(err) {
+            console.error('err : ', err);
+            dispatch({type: "APP_READY"})
+        }
     }, [])
 
     if (appState.loading) return <div>Loading...</div>
