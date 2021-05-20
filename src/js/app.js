@@ -23,7 +23,7 @@ const App = () => {
         try {
             const result = await api.get('/users/me');
 
-            console.log(`result`, result)
+            // console.log(`result`, result)
             dispatch({type: "APP_READY"})
 
             // if (result.status === 200) {
@@ -32,7 +32,7 @@ const App = () => {
 
             // throw result;
         } catch(err) {
-            console.error('err : ', err);
+           // console.error('err : ', err);
             dispatch({type: "APP_READY"})
         }
     }, [])

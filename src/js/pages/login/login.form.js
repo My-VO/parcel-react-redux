@@ -1,28 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../../shared/utils/api-url'
 
 function LoginForm() {
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    })
+
+    const [ errors, setErrors ] = useState(null)
+    
+    const handleInputChange = (ev) => {
+        const { name, value } = ev.target;
+
+        setValues({
+            ...values,
+            [name]: value,
+        })
+    }
+
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        setErrors(null)
+        e.preventDefault();     
 
-        const body = {
-            email: 'my@g.com',
-            password: 'azerty',
+        try {
+            const result = await api.post('/users/authenticate', values)
+            console.log('result : ', result)
+            console.log('result.message : ', result.message)
+        } catch (error) {
+            setErrors(error.response.data.message)
         }
-
-        const result = await api.post('/users/authenticate', body)
-        // console.log('result : ', result)
     }
 
     return (
         <div>
+            {errors && (<p style={{ color: 'red'}}>{errors}</p>)}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">
                     Email Address
                     <input
                     type="email"
-                    // value={values.email}
-                    // onChange={handleInputChange}
+                    value={values.email}
+                    onChange={handleInputChange}
                     name="email"
                     id="email"
                     required
@@ -33,8 +51,8 @@ function LoginForm() {
                     Password
                     <input
                     type="password"
-                    // value={values.password}
-                    // onChange={handleInputChange}
+                    value={values.password}
+                    onChange={handleInputChange}
                     name="password"
                     id="password"
                     required
