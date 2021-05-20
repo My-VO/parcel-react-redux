@@ -16,10 +16,7 @@ function Header() {
             </div>
             <nav>
                 <span>
-                    <Link to='/login'>Login</Link>
-                </span>
-                <span>
-                    <Link to='register'>Register</Link>
+                    <Link to='logout'>Logout</Link>
                 </span>
             </nav>
         </header>
