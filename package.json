@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/parcel-bundler/bin/cli.js ./src/index.html"
+    "dev": "./node_modules/parcel-bundler/bin/cli.js ./src/index.html",
+    "sass": "sass --watch ./src/assets/sass/App.scss:./src/assets/css/style.css"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,13 @@
   },
   "homepage": "https://github.com/My-VO/parcel-react-redux#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.0",
+    "redux-logger": "^3.0.6",
+    "sass": "^1.32.13",
+    "node-sass": "^6.0.0"
   },
   "browserslist": [
     "last 3 and_chr versions",
@@ -27,5 +34,13 @@
     "last 3 opera versions",
     "last 3 ios_saf versions",
     "last 3 safari versions"
-  ]
+  ],
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^9.0.2",
+    "formik": "^2.2.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "yup": "^0.32.9"
+  }
 }

@@ -1,0 +1,20 @@
+.nav {
+  min-width: 15rem;
+  font-size: x-large;
+  background-color: var(--orange-clair);
+  padding: var(--padding-global);
+  ul {
+    list-style-type: none;
+    li {
+      a {
+        color: var(--gris);
+        line-height: 2;
+        &:hover,
+        &:focus,
+        &:active {
+          color: var(--orange);
+        }
+      }
+    }
+  }
+}
