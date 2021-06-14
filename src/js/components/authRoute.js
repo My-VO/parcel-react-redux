@@ -9,11 +9,13 @@ const AuthRoute = ({ component, path, exact, ...props }) => {
     if (!isLogged)
         return <Redirect to='/login' />
 
-    return <Route exact={exact} path={path} render={() => <Component {...props} />} />; 
+    return <Route exact={exact} path={path} render={() => <Component {...props} />}
+    />; 
 }
 
 const useAuth = () => {
     const auth = useSelector(state => state.auth.values);
+   
     return auth !== null;
 }
 

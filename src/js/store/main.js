@@ -20,7 +20,7 @@ const mainReducer = (state = initialState, action) => {
             }
 
         case 'APP_RESET':
-            return state
+            return initialState
 
         default:
             return state

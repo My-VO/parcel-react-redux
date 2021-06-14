@@ -41,11 +41,11 @@ const App = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/register" exact component={Register} />
+                <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
-                <AuthRoute exact path="/logout" exact component={Logout} />
+                <AuthRoute exact path="/logout" component={Logout} />
                 <Layout>
-                    <AuthRoute exact path="/" exact component={Home} />
+                    <AuthRoute exact path="/" component={Home} />
                     <AuthRoute exact path="/books" component={Books} />
                 </Layout>
             </Switch>
