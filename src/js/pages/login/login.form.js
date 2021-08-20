@@ -46,7 +46,7 @@ function LoginForm() {
 
     return (
         <div>
-            {errors && (<p style={{ color: 'red'}}>{errors}</p>)}
+            {errors && (<p data-testid="error-msg" style={{ color: 'red'}}>{errors}</p>)}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">
@@ -54,6 +54,7 @@ function LoginForm() {
                     </label>
                     <input
                         id="email"
+                        data-testid="email-input"
                         type="email"
                         value={values.email}
                         onChange={handleInputChange}
@@ -67,6 +68,7 @@ function LoginForm() {
                     </label>
                     <input
                         id="password"
+                        data-testid="password-input"
                         type="password"
                         value={values.password}
                         onChange={handleInputChange}
