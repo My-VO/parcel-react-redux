@@ -10,7 +10,7 @@ const Register = () => {
             <RegisterForm />
             <p>
             Vous avez déjà un compte ?
-            <a href="/login"> Connectez-vous ici</a>
+            <a href="/login">Connectez-vous ici</a>
             </p>
         </div>
     )
