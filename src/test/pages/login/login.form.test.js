@@ -27,8 +27,9 @@ afterEach(() => {
 })
 afterAll(() => server.close());
 
+// Test integration: Login Form
 describe('Login Form', () => {
-    // Test d'intégration
+    // Test unitaire
     it('Should render without crash', () => {
         render (
             <Provider store={store}>
@@ -37,7 +38,7 @@ describe('Login Form', () => {
         )
     });
 
-    // Tests unitaires
+    // Test unitaire
     it('Render email input', () => {
         render (
             <Provider store={store}>
@@ -45,13 +46,17 @@ describe('Login Form', () => {
             </Provider>
         )
         
+        // Test unitaire
         expect(screen.getByLabelText(/email/i));
+        // Test unitaire
         const inputEmail = screen.getByTestId("email-input");
         expect(inputEmail).toBeInTheDocument();
+        // Test unitaire
         expect(inputEmail).toHaveAttribute('type', 'email');
 
     });
 
+    // Test unitaire
     it('Pass valid email to test email input field', () => {
         render (
             <Provider store={store}>
@@ -63,10 +68,13 @@ describe('Login Form', () => {
         const emailTest = "mail@test.com";
         userEvent.type(inputEmail, emailTest);
 
+        // Test unitaire
         expect(screen.getByTestId("email-input")).toHaveValue(emailTest);
+        // Test unitaire
         expect(screen.queryByTestId("error-msg")).not.toBeInTheDocument();
     });
 
+    // Test unitaire
     it('Render password input', () => {
         render (
             <Provider store={store}>
@@ -74,12 +82,16 @@ describe('Login Form', () => {
             </Provider>
         )
 
+        // Test unitaire
         expect(screen.getByLabelText(/password/i));
+        // Test unitaire
         const inputPassword = screen.getByTestId("password-input");
         expect(inputPassword).toBeInTheDocument();
+        // Test unitaire
         expect(inputPassword).toHaveAttribute('type', 'password');
     });
 
+    // Test unitaire
     it('Pass valid password to test password input field', () => {
         render (
             <Provider store={store}>
@@ -90,12 +102,14 @@ describe('Login Form', () => {
         const inputPassword = screen.getByTestId("password-input");
         const passwordTest = "Azerty@123";
         userEvent.type(inputPassword, passwordTest);
-
+        
+        // Test unitaire
         expect(screen.getByTestId("password-input")).toHaveValue(passwordTest);
+        // Test unitaire
         expect(screen.queryByTestId("error-msg")).not.toBeInTheDocument();
     });
 
-    // Tests end-to-end
+    // Test unitaire
     it('Allows the user to login successfully', () => {
         render (
             <Provider store={store}>
@@ -116,6 +130,7 @@ describe('Login Form', () => {
         // })
     });
     
+    // Test unitaire
     it('Handles server exceptions', () => {
         // mock the server error response for this test suite only.
         server.use(
