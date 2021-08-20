@@ -1,5 +1,5 @@
 # Test
-## Chemin test login
+## Path test login
 
 /src/test/pages/login/login.form.test.js
 
@@ -7,7 +7,7 @@
   <img src="src/assets/img/Schema_test_login.png" width="350" alt="Schéma test login">
 </p>
 
-## Schéma login
+## Path login
 
 /src/js/pages/login/login.form.js
 
